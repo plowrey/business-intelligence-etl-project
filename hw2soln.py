@@ -12,7 +12,7 @@ import requests as r
 
 url1 = 'http://drd.ba.ttu.edu/isqs3358/hw2/hr_data.csv'
 url2 = 'http://drd.ba.ttu.edu/isqs3358/hw2/sales_data.csv'
-filepath = 'Users/parke/OneDrive/Desktop/hw7/output_files'
+filepath = 'C:/Users/parke/OneDrive/Desktop/homework2/output_files/'
 file_out_1 = 'existing_title_aggregate.csv'
 file_out_2 = 'updated_title_aggregate.csv'
 file_out_3 = 'employee_raise.csv'
@@ -55,7 +55,7 @@ df_merge['Title'] = df_merge['Title'].replace(['Sales Associate 2'], 'Pinky')
 df_merge['Title'] = df_merge['Title'].replace(['Sales Associate 3'], 'Brain')
 df_merge['Title'] = df_merge['Title'].replace(['Sales Manager'], 'Yacko')
 
-Metric3748 = df_merge['ItemsSold']/df_merge['SalesValue']
+df_merge['Metric3748'] = df_merge['ItemsSold']/df_merge['SalesValue']
 
 #add apples column
 df_merge['Apples'] = 0
@@ -66,7 +66,7 @@ df_merge['Apples'][df_merge['Title'] == 'Pinky'] = 300
 df_merge['Apples'][df_merge['Title'] == 'Brain'] = 17
 df_merge['Apples'][df_merge['Title'] == 'Yacko'] = 51
 
-Total_Compensation = df_merge['Salary']+ df_merge['Apples']
+df_merge['Total_Compensation'] = df_merge['Salary']+ df_merge['Apples']
 
 df_merge['employee_more_apples'] = 'No'
 df_merge['employee_more_apples'][(df_merge['Title'] == 'Yacko') |
@@ -95,3 +95,4 @@ df_existing[['Total_Compensation', 'Metric3748']].to_csv(filepath + file_out_2, 
 
 #employees that ger more apples -------------------------------------------------------------------------------------
 df_merge[['EmpId', 'Title', 'Salary', 'Apples', 'Total_Compensation']].to_csv(filepath + file_out_3, sep='|', index=True)
+
